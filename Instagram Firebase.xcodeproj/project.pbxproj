@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951DB1E019AF39E14EFE2F46 /* Pods_Instagram_Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D8B2C12F1727F745E3FCED /* Pods_Instagram_Firebase.framework */; };
 		F92440181E957EB6001748F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92440171E957EB6001748F6 /* Assets.xcassets */; };
 		F92440291E958697001748F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92440251E958697001748F6 /* LaunchScreen.storyboard */; };
 		F924402A1E958697001748F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92440271E958697001748F6 /* Main.storyboard */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55D8B2C12F1727F745E3FCED /* Pods_Instagram_Firebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_Firebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A906F358128EAE25A100A48 /* Pods-Instagram Firebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram Firebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram Firebase/Pods-Instagram Firebase.debug.xcconfig"; sourceTree = "<group>"; };
+		EA3FDC078C319369FD635B9E /* Pods-Instagram Firebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram Firebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram Firebase/Pods-Instagram Firebase.release.xcconfig"; sourceTree = "<group>"; };
 		F924400D1E957EB6001748F6 /* Instagram Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram Firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92440171E957EB6001748F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F92440261E958697001748F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Storyboards/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951DB1E019AF39E14EFE2F46 /* Pods_Instagram_Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		638B8756ED466A1812669061 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55D8B2C12F1727F745E3FCED /* Pods_Instagram_Firebase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EEB74A672FC541F44E630463 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A906F358128EAE25A100A48 /* Pods-Instagram Firebase.debug.xcconfig */,
+				EA3FDC078C319369FD635B9E /* Pods-Instagram Firebase.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F92440041E957EB6001748F6 = {
 			isa = PBXGroup;
 			children = (
 				F924400F1E957EB6001748F6 /* Instagram Firebase */,
 				F924400E1E957EB6001748F6 /* Products */,
+				EEB74A672FC541F44E630463 /* Pods */,
+				638B8756ED466A1812669061 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F924401F1E957EB6001748F6 /* Build configuration list for PBXNativeTarget "Instagram Firebase" */;
 			buildPhases = (
+				19690FEBD83BA2081315C49B /* [CP] Check Pods Manifest.lock */,
 				F92440091E957EB6001748F6 /* Sources */,
 				F924400A1E957EB6001748F6 /* Frameworks */,
 				F924400B1E957EB6001748F6 /* Resources */,
+				3DB430425690E21CDBF1D705 /* [CP] Embed Pods Frameworks */,
+				35D670016A075F8573078B9E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,6 +196,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19690FEBD83BA2081315C49B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35D670016A075F8573078B9E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instagram Firebase/Pods-Instagram Firebase-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DB430425690E21CDBF1D705 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instagram Firebase/Pods-Instagram Firebase-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F92440091E957EB6001748F6 /* Sources */ = {
@@ -300,6 +375,7 @@
 		};
 		F92440201E957EB6001748F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A906F358128EAE25A100A48 /* Pods-Instagram Firebase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Instagram Firebase/Support Files/Info.plist";
@@ -312,6 +388,7 @@
 		};
 		F92440211E957EB6001748F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA3FDC078C319369FD635B9E /* Pods-Instagram Firebase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Instagram Firebase/Support Files/Info.plist";
