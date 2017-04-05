@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpController: UIViewController {
   
@@ -22,6 +23,7 @@ class SignUpController: UIViewController {
     tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
     tf.borderStyle = .roundedRect
     tf.font = UIFont.systemFont(ofSize: 14)
+    tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
     return tf
   }()
   
@@ -31,6 +33,7 @@ class SignUpController: UIViewController {
     tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
     tf.borderStyle = .roundedRect
     tf.font = UIFont.systemFont(ofSize: 14)
+    tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
     return tf
   }()
 
@@ -41,6 +44,7 @@ class SignUpController: UIViewController {
     tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
     tf.borderStyle = .roundedRect
     tf.font = UIFont.systemFont(ofSize: 14)
+    tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
     return tf
   }()
   
@@ -51,8 +55,52 @@ class SignUpController: UIViewController {
     button.layer.cornerRadius = 5
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     button.setTitleColor(.white, for: .normal)
+    button.isEnabled = false
+    button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     return button
   }()
+  
+  func handleTextInputChange() {
+    let isFormValid = !(emailTextField.text?.isEmpty ?? true) &&
+                      !(usernameTextField.text?.isEmpty ?? true) &&
+                      !(passwordTextField.text?.isEmpty ?? true)
+    
+    if isFormValid {
+      signUpButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.6039215686, blue: 0.9294117647, alpha: 1)
+      signUpButton.isEnabled = true
+    } else {
+      signUpButton.backgroundColor = #colorLiteral(red: 0.644659102, green: 0.8389277458, blue: 0.9662960172, alpha: 1)
+      signUpButton.isEnabled = false
+    }
+  }
+  
+  func handleSignUp() {
+    guard let email = emailTextField.text, !email.isEmpty else {
+      print("email field should be specified")
+      return
+    }
+    
+    guard let username = usernameTextField.text, !username.isEmpty else {
+      print("username field should be specified")
+      return
+    }
+    
+    guard let password = passwordTextField.text, !password.isEmpty else {
+      print("password field should be specified")
+      return
+    }
+    
+    FIRAuth.auth()?.createUser(withEmail: email, password: password) {
+      user, error in
+      
+      guard error != nil else {
+        print("Error creating new user: \(error!)")
+        return
+      }
+      
+      
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
