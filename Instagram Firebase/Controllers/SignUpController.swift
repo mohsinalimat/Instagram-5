@@ -7,13 +7,14 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 
 class SignUpController: UIViewController {
   
   let plusPhotoButton: UIButton = {
     let button = UIButton(type: .system)
     button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
+    button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
     return button
   }()
   
@@ -60,6 +61,13 @@ class SignUpController: UIViewController {
     return button
   }()
   
+  func handlePlusPhoto() {
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.allowsEditing = true
+    imagePickerController.delegate = self
+    present(imagePickerController, animated: true, completion: nil)
+  }
+  
   func handleTextInputChange() {
     let isFormValid = !(emailTextField.text?.isEmpty ?? true) &&
                       !(usernameTextField.text?.isEmpty ?? true) &&
@@ -93,8 +101,8 @@ class SignUpController: UIViewController {
     FIRAuth.auth()?.createUser(withEmail: email, password: password) {
       user, error in
       
-      guard error != nil else {
-        print("Error creating new user: \(error!)")
+      if let error = error {
+        print("Error creating new user: \(error)")
         return
       }
       
@@ -122,3 +130,20 @@ class SignUpController: UIViewController {
   }
 }
 
+/// MARK: - UIImagePickerControllerDelegate
+extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+      plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+    } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+      plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width * 0.5
+    plusPhotoButton.layer.masksToBounds = true
+    plusPhotoButton.layer.borderColor = #colorLiteral(red: 0.644659102, green: 0.8389277458, blue: 0.9662960172, alpha: 1).cgColor
+    plusPhotoButton.layer.borderWidth = 2
+    
+    dismiss(animated: true, completion: nil)
+  }
+}
