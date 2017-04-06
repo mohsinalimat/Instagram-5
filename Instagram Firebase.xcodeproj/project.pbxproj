@@ -17,6 +17,7 @@
 		F961BE821E9590460001D1E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F961BE811E9590460001D1E1 /* GoogleService-Info.plist */; };
 		F9A5FADC1E965213009F9115 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FADB1E965213009F9115 /* MainTabBarController.swift */; };
 		F9A5FADE1E965380009F9115 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FADD1E965380009F9115 /* UserProfileController.swift */; };
+		F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F961BE811E9590460001D1E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Support Files/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A5FADB1E965213009F9115 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		F9A5FADD1E965380009F9115 /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileController.swift; path = Controllers/UserProfileController.swift; sourceTree = "<group>"; };
+		F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileHeader.swift; path = "User Profile/UserProfileHeader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		F924400F1E957EB6001748F6 /* Instagram Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				F9A5FADF1E965D45009F9115 /* User Profile */,
 				F92440311E9587E2001748F6 /* Extensions */,
 				F92440231E95863A001748F6 /* Controllers */,
 				F92440241E958644001748F6 /* Storyboards */,
@@ -130,6 +133,14 @@
 				F92440321E9587FA001748F6 /* UIView.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F9A5FADF1E965D45009F9115 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */,
+			);
+			name = "User Profile";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 				F924402F1E9586B4001748F6 /* AppDelegate.swift in Sources */,
 				F92440331E9587FA001748F6 /* UIView.swift in Sources */,
 				F9A5FADC1E965213009F9115 /* MainTabBarController.swift in Sources */,
+				F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */,
 				F9A5FADE1E965380009F9115 /* UserProfileController.swift in Sources */,
 				F924402C1E9586AA001748F6 /* SignUpController.swift in Sources */,
 			);
