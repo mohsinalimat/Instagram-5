@@ -15,6 +15,8 @@
 		F924402F1E9586B4001748F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F924402D1E9586B4001748F6 /* AppDelegate.swift */; };
 		F92440331E9587FA001748F6 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92440321E9587FA001748F6 /* UIView.swift */; };
 		F961BE821E9590460001D1E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F961BE811E9590460001D1E1 /* GoogleService-Info.plist */; };
+		F9A5FADC1E965213009F9115 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FADB1E965213009F9115 /* MainTabBarController.swift */; };
+		F9A5FADE1E965380009F9115 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FADD1E965380009F9115 /* UserProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		F924402E1E9586B4001748F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Support Files/Info.plist"; sourceTree = "<group>"; };
 		F92440321E9587FA001748F6 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Extensions/UIView.swift; sourceTree = "<group>"; };
 		F961BE811E9590460001D1E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Support Files/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F9A5FADB1E965213009F9115 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controllers/MainTabBarController.swift; sourceTree = "<group>"; };
+		F9A5FADD1E965380009F9115 /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileController.swift; path = Controllers/UserProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				F924402B1E9586AA001748F6 /* SignUpController.swift */,
+				F9A5FADB1E965213009F9115 /* MainTabBarController.swift */,
+				F9A5FADD1E965380009F9115 /* UserProfileController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +258,8 @@
 			files = (
 				F924402F1E9586B4001748F6 /* AppDelegate.swift in Sources */,
 				F92440331E9587FA001748F6 /* UIView.swift in Sources */,
+				F9A5FADC1E965213009F9115 /* MainTabBarController.swift in Sources */,
+				F9A5FADE1E965380009F9115 /* UserProfileController.swift in Sources */,
 				F924402C1E9586AA001748F6 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

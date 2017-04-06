@@ -83,30 +83,52 @@ class SignUpController: UIViewController {
   }
   
   func handleSignUp() {
-    guard let email = emailTextField.text, !email.isEmpty else {
-      print("email field should be specified")
-      return
-    }
-    
-    guard let username = usernameTextField.text, !username.isEmpty else {
-      print("username field should be specified")
-      return
-    }
-    
-    guard let password = passwordTextField.text, !password.isEmpty else {
-      print("password field should be specified")
-      return
+    guard let email = emailTextField.text, !email.isEmpty,
+      let username = usernameTextField.text, !username.isEmpty,
+      let password = passwordTextField.text, !password.isEmpty else {
+        return
     }
     
     FIRAuth.auth()?.createUser(withEmail: email, password: password) {
-      user, error in
+      [unowned self] user, error in
       
       if let error = error {
-        print("Error creating new user: \(error)")
+        print("Error creating new user: ", error)
         return
       }
       
+      print("Created user: ", user?.uid ?? "")
       
+      guard let image = self.plusPhotoButton.imageView?.image else { return }
+      guard let uploadData = UIImageJPEGRepresentation(image, 0.2) else { return }
+      
+      let uuidString = UUID().uuidString
+      FIRStorage.storage().reference().child("profile_images").child(uuidString).put(uploadData, metadata: nil) {
+        metadata, error in
+        
+        if let error = error {
+          print("Failed to upload profile image: ", error)
+        }
+        guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
+        
+        print("Successfully uploaded profile image: ", profileImageUrl)
+        
+        guard let uid = user?.uid else { return }
+        
+        let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl]
+        let values = [uid: dictionaryValues]
+        
+        FIRDatabase.database().reference().child("users").updateChildValues(values) {
+          error, reference in
+          if let error = error {
+            print("Error setting new values for user: \(error)")
+            return
+          }
+          
+          print("New values for user(\(user?.uid ?? "")) set")
+        }
+
+      }
     }
   }
   

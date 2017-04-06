@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     FIRApp.configure()
     
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = MainTabBarController()
+    
     return true
   }
 
