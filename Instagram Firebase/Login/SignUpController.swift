@@ -61,6 +61,16 @@ class SignUpController: UIViewController {
     return button
   }()
   
+  let alreadyHaveAccountButton: UIButton = {
+    let button = UIButton(type: .system)
+    let attributedText = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.lightGray])
+    attributedText.append(NSAttributedString(string: "Sign In", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14), NSForegroundColorAttributeName: #colorLiteral(red: 0.06666666667, green: 0.6039215686, blue: 0.9294117647, alpha: 1)]))
+    attributedText.append(NSAttributedString(string: ".", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.lightGray]))
+    button.setAttributedTitle(attributedText, for: .normal)
+    button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
+    return button
+  }()
+  
   func handlePlusPhoto() {
     let imagePickerController = UIImagePickerController()
     imagePickerController.allowsEditing = true
@@ -126,19 +136,33 @@ class SignUpController: UIViewController {
           }
           
           print("New values for user(\(user?.uid ?? "")) set")
+          
+          guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+          mainTabBarController.setupViewControllers()
+          
+          self.dismiss(animated: true, completion: nil)
         }
 
       }
     }
   }
   
+  func handleShowLogin() {
+    _ = navigationController?.popViewController(animated: true)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    view.backgroundColor = .white
     
     view.addSubview(plusPhotoButton)
     plusPhotoButton.anchor(top: topLayoutGuide.bottomAnchor, centerX: view.centerXAnchor, width: plusPhotoButton.heightAnchor, topConstant: 20, heightConstant: 140)
     
     setupInputFields()
+    
+    view.addSubview(alreadyHaveAccountButton)
+    alreadyHaveAccountButton.anchor(bottom: view.bottomAnchor, centerX: view.centerXAnchor, bottomConstant: 8)
   }
   
   private func setupInputFields() {

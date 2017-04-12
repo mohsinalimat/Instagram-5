@@ -11,13 +11,15 @@
 		F92440181E957EB6001748F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92440171E957EB6001748F6 /* Assets.xcassets */; };
 		F92440291E958697001748F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92440251E958697001748F6 /* LaunchScreen.storyboard */; };
 		F924402A1E958697001748F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92440271E958697001748F6 /* Main.storyboard */; };
-		F924402C1E9586AA001748F6 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F924402B1E9586AA001748F6 /* SignUpController.swift */; };
 		F924402F1E9586B4001748F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F924402D1E9586B4001748F6 /* AppDelegate.swift */; };
 		F92440331E9587FA001748F6 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92440321E9587FA001748F6 /* UIView.swift */; };
 		F961BE821E9590460001D1E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F961BE811E9590460001D1E1 /* GoogleService-Info.plist */; };
 		F9A5FADC1E965213009F9115 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FADB1E965213009F9115 /* MainTabBarController.swift */; };
 		F9A5FADE1E965380009F9115 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FADD1E965380009F9115 /* UserProfileController.swift */; };
 		F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */; };
+		F9A5FAE31E9678E1009F9115 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE21E9678E1009F9115 /* UIColor.swift */; };
+		F9A5FAE61E968118009F9115 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE51E968118009F9115 /* LoginController.swift */; };
+		F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE71E9684AE009F9115 /* SignUpController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +30,6 @@
 		F92440171E957EB6001748F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F92440261E958697001748F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Storyboards/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F92440281E958697001748F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Storyboards/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F924402B1E9586AA001748F6 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpController.swift; path = Controllers/SignUpController.swift; sourceTree = "<group>"; };
 		F924402D1E9586B4001748F6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Support Files/AppDelegate.swift"; sourceTree = "<group>"; };
 		F924402E1E9586B4001748F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Support Files/Info.plist"; sourceTree = "<group>"; };
 		F92440321E9587FA001748F6 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Extensions/UIView.swift; sourceTree = "<group>"; };
@@ -36,6 +37,9 @@
 		F9A5FADB1E965213009F9115 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		F9A5FADD1E965380009F9115 /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileController.swift; path = Controllers/UserProfileController.swift; sourceTree = "<group>"; };
 		F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileHeader.swift; path = "User Profile/UserProfileHeader.swift"; sourceTree = "<group>"; };
+		F9A5FAE21E9678E1009F9115 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = Extensions/UIColor.swift; sourceTree = "<group>"; };
+		F9A5FAE51E968118009F9115 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = Login/LoginController.swift; sourceTree = "<group>"; };
+		F9A5FAE71E9684AE009F9115 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpController.swift; path = Login/SignUpController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		F924400F1E957EB6001748F6 /* Instagram Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				F9A5FAE41E968109009F9115 /* Login */,
 				F9A5FADF1E965D45009F9115 /* User Profile */,
 				F92440311E9587E2001748F6 /* Extensions */,
 				F92440231E95863A001748F6 /* Controllers */,
@@ -111,7 +116,6 @@
 		F92440231E95863A001748F6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F924402B1E9586AA001748F6 /* SignUpController.swift */,
 				F9A5FADB1E965213009F9115 /* MainTabBarController.swift */,
 				F9A5FADD1E965380009F9115 /* UserProfileController.swift */,
 			);
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F92440321E9587FA001748F6 /* UIView.swift */,
+				F9A5FAE21E9678E1009F9115 /* UIColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +146,15 @@
 				F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */,
 			);
 			name = "User Profile";
+			sourceTree = "<group>";
+		};
+		F9A5FAE41E968109009F9115 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F9A5FAE71E9684AE009F9115 /* SignUpController.swift */,
+				F9A5FAE51E968118009F9115 /* LoginController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +192,7 @@
 				TargetAttributes = {
 					F924400C1E957EB6001748F6 = {
 						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 7R7GVTFP58;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -268,11 +283,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F924402F1E9586B4001748F6 /* AppDelegate.swift in Sources */,
+				F9A5FAE31E9678E1009F9115 /* UIColor.swift in Sources */,
+				F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */,
 				F92440331E9587FA001748F6 /* UIView.swift in Sources */,
 				F9A5FADC1E965213009F9115 /* MainTabBarController.swift in Sources */,
 				F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */,
+				F9A5FAE61E968118009F9115 /* LoginController.swift in Sources */,
 				F9A5FADE1E965380009F9115 /* UserProfileController.swift in Sources */,
-				F924402C1E9586AA001748F6 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -384,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -398,7 +415,9 @@
 			baseConfigurationReference = 8A906F358128EAE25A100A48 /* Pods-Instagram Firebase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7R7GVTFP58;
 				INFOPLIST_FILE = "$(SRCROOT)/Instagram Firebase/Support Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.breath.Instagram-Firebase";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,7 +430,9 @@
 			baseConfigurationReference = EA3FDC078C319369FD635B9E /* Pods-Instagram Firebase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7R7GVTFP58;
 				INFOPLIST_FILE = "$(SRCROOT)/Instagram Firebase/Support Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.breath.Instagram-Firebase";
 				PRODUCT_NAME = "$(TARGET_NAME)";
