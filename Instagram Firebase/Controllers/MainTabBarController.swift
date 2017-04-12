@@ -13,6 +13,8 @@ class MainTabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    delegate = self
+    
     if FIRAuth.auth()?.currentUser == nil {
       DispatchQueue.main.async {
         [unowned self] in
@@ -56,5 +58,19 @@ class MainTabBarController: UITabBarController {
     navController.tabBarItem.image = unselectedImage
     navController.tabBarItem.selectedImage = selectedImage
     return navController
+  }
+}
+
+// MARK: - UITabBarControllerDelegate
+extension MainTabBarController: UITabBarControllerDelegate {
+  func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    if let index = viewControllers?.index(of: viewController), index == 2 {
+      let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+      let navController = UINavigationController(rootViewController: photoSelectorController)
+      present(navController, animated: true, completion: nil)
+      return false
+    }
+    
+    return true
   }
 }
