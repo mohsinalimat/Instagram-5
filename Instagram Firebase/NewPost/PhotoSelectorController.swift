@@ -17,6 +17,7 @@ class PhotoSelectorController: UICollectionViewController {
   var assets = [PHAsset]()
   var images = [UIImage]()
   var selectedImage: UIImage?
+  var header: PhotoSelectorHeader?
   
   override var prefersStatusBarHidden: Bool {
     return true
@@ -46,7 +47,9 @@ class PhotoSelectorController: UICollectionViewController {
   }
   
   func handleNext() {
-    
+    let sharePhotoController = SharePhotoController()
+    sharePhotoController.selectedImage = header?.imageView.image
+    navigationController?.pushViewController(sharePhotoController, animated: true)
   }
   
   private func fetchPhotos() {
@@ -84,7 +87,7 @@ class PhotoSelectorController: UICollectionViewController {
   
   private func asstesFetchOptions() -> PHFetchOptions {
     let fetchOptions = PHFetchOptions()
-    fetchOptions.fetchLimit = 20
+    fetchOptions.fetchLimit = 30
     let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
     fetchOptions.sortDescriptors = [sortDescriptor]
     return fetchOptions
@@ -105,6 +108,8 @@ extension PhotoSelectorController {
   
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+    
+    self.header = header
     header.imageView.image = selectedImage
     
     if let selectedImage = selectedImage {
@@ -124,6 +129,9 @@ extension PhotoSelectorController {
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedImage = images[indexPath.row]
     collectionView.reloadData()
+    
+    let topIndexPath = IndexPath(row: 0, section: 0)
+    collectionView.scrollToItem(at: topIndexPath, at: .bottom, animated: true)
   }
 }
 

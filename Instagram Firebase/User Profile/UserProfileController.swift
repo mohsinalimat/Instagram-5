@@ -22,6 +22,7 @@ struct User {
 class UserProfileController: UICollectionViewController {
   
   var user: User?
+  var posts = [Post]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,9 +31,11 @@ class UserProfileController: UICollectionViewController {
     
     collectionView?.backgroundColor = .white
     collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
-    collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+    collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: "cellId")
     
     setupLogoutButton()
+    
+    fetchPosts()
   }
   
   private func fetchUser() {
@@ -48,6 +51,31 @@ class UserProfileController: UICollectionViewController {
       error in
       print("Failed to fetch user: ", error)
     })
+  }
+  
+  private func fetchPosts() {
+    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+    
+    FIRDatabase.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { [unowned self] (snapshop) in
+      guard let dictionaries = snapshop.value as? [String: Any] else { return }
+      
+      dictionaries.forEach{
+        key, value in
+        guard let dictionary = value as? [String: Any] else { return }
+        
+        do {
+          if let post = try Post(from: dictionary) {
+            self.posts.append(post)
+          }
+        } catch let error {
+          print("Failed to initialize post with error: ", error)
+        }
+      }
+      
+      self.collectionView?.reloadData()
+    }) { (error) in
+      print("Failed to fetch posts from db: ", error)
+    }
   }
   
   private func setupLogoutButton() {
@@ -76,12 +104,12 @@ class UserProfileController: UICollectionViewController {
   // MARK: - CollectionView
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 7
+    return posts.count
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-    cell.backgroundColor = UIColor(r: CGFloat(arc4random() % 255), g: CGFloat(arc4random() % 255), b: CGFloat(arc4random() % 255))
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! UserProfilePhotoCell
+    cell.post = posts[indexPath.row]
     return cell
   }
   
