@@ -27,6 +27,8 @@
 		F9A5FAE61E968118009F9115 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE51E968118009F9115 /* LoginController.swift */; };
 		F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE71E9684AE009F9115 /* SignUpController.swift */; };
 		F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5541EA1790600B82304 /* CustomImageView.swift */; };
+		F9AEE5581EA1816000B82304 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5571EA1816000B82304 /* HomeController.swift */; };
+		F9AEE55A1EA1824E00B82304 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5591EA1824E00B82304 /* HomePostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		F9A5FAE51E968118009F9115 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = Login/LoginController.swift; sourceTree = "<group>"; };
 		F9A5FAE71E9684AE009F9115 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpController.swift; path = Login/SignUpController.swift; sourceTree = "<group>"; };
 		F9AEE5541EA1790600B82304 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomImageView.swift; path = Utils/CustomImageView.swift; sourceTree = "<group>"; };
+		F9AEE5571EA1816000B82304 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = Home/HomeController.swift; sourceTree = "<group>"; };
+		F9AEE5591EA1824E00B82304 /* HomePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomePostCell.swift; path = Home/HomePostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 		F924400F1E957EB6001748F6 /* Instagram Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				F9AEE5561EA1814B00B82304 /* Home */,
 				F94D7F6C1EA01C9A00AB71B4 /* Models */,
 				F9A5FAE41E968109009F9115 /* Login */,
 				F901CF571E9EC468007CC40D /* NewPost */,
@@ -174,6 +179,15 @@
 				F9A5FAE51E968118009F9115 /* LoginController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		F9AEE5561EA1814B00B82304 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F9AEE5571EA1816000B82304 /* HomeController.swift */,
+				F9AEE5591EA1824E00B82304 /* HomePostCell.swift */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,8 +328,10 @@
 				F94D7F691EA0041500AB71B4 /* MainTabBarController.swift in Sources */,
 				F94D7F611EA0037300AB71B4 /* Extensions.swift in Sources */,
 				F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */,
+				F9AEE55A1EA1824E00B82304 /* HomePostCell.swift in Sources */,
 				F9A5FAE61E968118009F9115 /* LoginController.swift in Sources */,
 				F947FBD91E9ED000009D9390 /* PhotoSelectorCell.swift in Sources */,
+				F9AEE5581EA1816000B82304 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

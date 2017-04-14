@@ -35,7 +35,6 @@ class UserProfileController: UICollectionViewController {
     
     setupLogoutButton()
     
-//    fetchPosts()
     fetchOrderedPosts()
   }
   
@@ -52,31 +51,6 @@ class UserProfileController: UICollectionViewController {
       error in
       print("Failed to fetch user: ", error)
     })
-  }
-  
-  private func fetchPosts() {
-    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-    
-    FIRDatabase.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { [unowned self] (snapshop) in
-      guard let dictionaries = snapshop.value as? [String: Any] else { return }
-      
-      dictionaries.forEach{
-        key, value in
-        guard let dictionary = value as? [String: Any] else { return }
-        
-        do {
-          if let post = try Post(from: dictionary) {
-            self.posts.append(post)
-          }
-        } catch let error {
-          print("Failed to initialize post with error: ", error)
-        }
-      }
-      
-      self.collectionView?.reloadData()
-    }) { (error) in
-      print("Failed to fetch posts from db: ", error)
-    }
   }
   
   private func fetchOrderedPosts() {
