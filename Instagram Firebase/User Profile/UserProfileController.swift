@@ -35,7 +35,8 @@ class UserProfileController: UICollectionViewController {
     
     setupLogoutButton()
     
-    fetchPosts()
+//    fetchPosts()
+    fetchOrderedPosts()
   }
   
   private func fetchUser() {
@@ -75,6 +76,27 @@ class UserProfileController: UICollectionViewController {
       self.collectionView?.reloadData()
     }) { (error) in
       print("Failed to fetch posts from db: ", error)
+    }
+  }
+  
+  private func fetchOrderedPosts() {
+    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+    
+    let ref = FIRDatabase.database().reference().child("posts").child(uid)
+    ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { [unowned self] (snapshot) in
+      guard let dictionary = snapshot.value as? [String: Any] else { return }
+      
+      do {
+        if let post = try Post(from: dictionary) {
+          self.posts.append(post)
+        }
+        
+        self.collectionView?.reloadData()
+      } catch let error {
+        print("Failed to initialize Post: ", error)
+      }
+    }) { (error) in
+      print("Failed to fetch ordered posts: ", error)
     }
   }
   

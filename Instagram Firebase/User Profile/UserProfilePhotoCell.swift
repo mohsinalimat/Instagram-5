@@ -12,26 +12,14 @@ class UserProfilePhotoCell: UICollectionViewCell {
   
   var post: Post? {
     didSet {
-      guard let imageUrl = post?.imageUrl,
-        let url = URL(string: imageUrl) else { return }
-      
-      URLSession.shared.dataTask(with: url) { [unowned self] (data, response, error) in
-        if let error = error {
-          print("Failed to load image from db: ", error)
-          return
-        }
-        
-        guard let imageData = data else { return }
-       
-        DispatchQueue.main.async {
-          self.imageView.image = UIImage(data: imageData)
-        }
-      }.resume()
+      guard let imageUrl = post?.imageUrl else { return }
+
+      photoImageView.loadImage(url: imageUrl)
     }
   }
   
-  let imageView: UIImageView = {
-    let iv = UIImageView()
+  let photoImageView: CustomImageView = {
+    let iv = CustomImageView()
     iv.contentMode = .scaleAspectFill
     iv.clipsToBounds = true
     return iv;
@@ -40,8 +28,8 @@ class UserProfilePhotoCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    addSubview(imageView)
-    imageView.anchor(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, bottom: bottomAnchor)
+    addSubview(photoImageView)
+    photoImageView.anchor(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, bottom: bottomAnchor)
   }
   
   required init?(coder aDecoder: NSCoder) {

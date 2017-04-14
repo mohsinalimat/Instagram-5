@@ -26,6 +26,7 @@
 		F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */; };
 		F9A5FAE61E968118009F9115 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE51E968118009F9115 /* LoginController.swift */; };
 		F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE71E9684AE009F9115 /* SignUpController.swift */; };
+		F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5541EA1790600B82304 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileHeader.swift; path = "User Profile/UserProfileHeader.swift"; sourceTree = "<group>"; };
 		F9A5FAE51E968118009F9115 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = Login/LoginController.swift; sourceTree = "<group>"; };
 		F9A5FAE71E9684AE009F9115 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpController.swift; path = Login/SignUpController.swift; sourceTree = "<group>"; };
+		F9AEE5541EA1790600B82304 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomImageView.swift; path = Utils/CustomImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				F94D7F601EA0037300AB71B4 /* Extensions.swift */,
+				F9AEE5541EA1790600B82304 /* CustomImageView.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */,
 				F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */,
 				F901CF591E9EC485007CC40D /* PhotoSelectorController.swift in Sources */,
+				F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */,
 				F94D7F6E1EA01CBE00AB71B4 /* Post.swift in Sources */,
 				F94D7F5E1EA0000200AB71B4 /* SharePhotoController.swift in Sources */,
 				F94D7F701EA0202B00AB71B4 /* UserProfilePhotoCell.swift in Sources */,
