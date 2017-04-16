@@ -9,16 +9,6 @@
 import UIKit
 import Firebase
 
-struct User {
-  let username: String
-  let profileImageUrl: String
-  
-  init(with dictionary: [String: Any]) {
-    username = dictionary["username"] as? String ?? ""
-    profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
-  }
-}
-
 class UserProfileController: UICollectionViewController {
   
   var user: User?
@@ -41,16 +31,11 @@ class UserProfileController: UICollectionViewController {
   private func fetchUser() {
     guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
     
-    FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {
-      [unowned self] snapshot in
-      guard let dictionary = snapshot.value as? [String: Any] else { return }
-      self.user = User(with: dictionary)
+    FIRDatabase.fetchUser(with: uid) { (user) in
+      self.user = user
       self.navigationItem.title = self.user?.username
       self.collectionView?.reloadData()
-    }, withCancel: {
-      error in
-      print("Failed to fetch user: ", error)
-    })
+    }
   }
   
   private func fetchOrderedPosts() {
@@ -58,11 +43,12 @@ class UserProfileController: UICollectionViewController {
     
     let ref = FIRDatabase.database().reference().child("posts").child(uid)
     ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { [unowned self] (snapshot) in
-      guard let dictionary = snapshot.value as? [String: Any] else { return }
+      guard let dictionary = snapshot.value as? [String: Any],
+        let user = self.user else { return }
       
       do {
-        if let post = try Post(from: dictionary) {
-          self.posts.append(post)
+        if let post = try Post(with: user, from: dictionary) {
+          self.posts.insert(post, at: 0)
         }
         
         self.collectionView?.reloadData()

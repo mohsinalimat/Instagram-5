@@ -14,10 +14,17 @@ enum SerializationError: Error {
 
 struct Post {
   let imageUrl: String
+  let user: User
+  let caption: String
   
-  init?(from dictionary: [String: Any]) throws {
-    guard let imageUrl = dictionary["imageUrl"] as? String else { throw SerializationError.missing("missing imageUrl") }
+  init?(with user: User, from dictionary: [String: Any]) throws {
+    guard let imageUrl = dictionary["imageUrl"] as? String else {
+      throw SerializationError.missing("missing imageUrl")
+    }
     
     self.imageUrl = imageUrl
+    self.user = user
+    
+    self.caption = dictionary["caption"] as? String ?? ""
   }
 }

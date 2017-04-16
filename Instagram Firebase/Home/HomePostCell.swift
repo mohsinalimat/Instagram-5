@@ -13,7 +13,15 @@ class HomePostCell: UICollectionViewCell {
   var post: Post? {
     didSet {
       guard let imageUrl = post?.imageUrl else { return }
+      
       photoImageView.loadImage(url: imageUrl)
+      usernameLabel.text = post?.user.username
+      
+      if let profileImageUrl = post?.user.profileImageUrl {
+        userProfileImageView.loadImage(url: profileImageUrl)
+      }
+      
+      setupCaption()
     }
   }
   
@@ -21,13 +29,11 @@ class HomePostCell: UICollectionViewCell {
     let iv = CustomImageView()
     iv.contentMode = .scaleAspectFill
     iv.clipsToBounds = true
-    iv.backgroundColor = .cyan
     return iv
   }()
   
   let usernameLabel: UILabel = {
     let label = UILabel()
-    label.text = "username"
     label.font = UIFont.boldSystemFont(ofSize: 14)
     return label
   }()
@@ -112,6 +118,16 @@ class HomePostCell: UICollectionViewCell {
     
     stackView.anchor(top: photoImageView.bottomAnchor, leading: leadingAnchor, topConstant: 0, leadingConstant: 8, widthConstant: 120, heightConstant: 50)
     bookmarkButton.anchor(top: photoImageView.bottomAnchor, trailing: trailingAnchor, height: stackView.heightAnchor, widthConstant: 40)
+  }
+  
+  private func setupCaption() {
+    guard let post = post else { return }
+    
+    let attributedText = NSMutableAttributedString(string: "\(post.user.username)", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
+    attributedText.append(NSAttributedString(string: " \(post.caption)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]))
+    attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 4)]))
+    attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.gray]))
+    captionLabel.attributedText = attributedText
   }
   
   required init?(coder aDecoder: NSCoder) {

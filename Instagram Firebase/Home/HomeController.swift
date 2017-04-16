@@ -33,7 +33,13 @@ class HomeController: UICollectionViewController {
   private func fetchPosts() {
     guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
     
-    FIRDatabase.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { [unowned self] (snapshop) in
+    FIRDatabase.fetchUser(with: uid) { [unowned self] (user) in
+      self.fetchPosts(for: user)
+    }
+  }
+  
+  private func fetchPosts(for user: User) {
+    FIRDatabase.database().reference().child("posts").child(user.uid).observeSingleEvent(of: .value, with: { [unowned self] (snapshop) in
       guard let dictionaries = snapshop.value as? [String: Any] else { return }
       
       dictionaries.forEach{
@@ -41,7 +47,7 @@ class HomeController: UICollectionViewController {
         guard let dictionary = value as? [String: Any] else { return }
         
         do {
-          if let post = try Post(from: dictionary) {
+          if let post = try Post(with: user, from: dictionary) {
             self.posts.append(post)
           }
         } catch let error {
@@ -74,7 +80,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     var height: CGFloat = 40 + 8 + 8 //header of cell
     height += view.frame.width // image
     height += 50 // bottom buttons
-    height += 80 // caption
+    height += 60 // caption
     
     return CGSize(width: view.frame.width, height: height)
   }

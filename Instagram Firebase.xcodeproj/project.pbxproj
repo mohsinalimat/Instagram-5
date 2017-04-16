@@ -28,6 +28,8 @@
 		F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5541EA1790600B82304 /* CustomImageView.swift */; };
 		F9AEE5581EA1816000B82304 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5571EA1816000B82304 /* HomeController.swift */; };
 		F9AEE55A1EA1824E00B82304 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5591EA1824E00B82304 /* HomePostCell.swift */; };
+		F9F2719A1EA3F35500155B70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F271991EA3F35500155B70 /* User.swift */; };
+		F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		F9AEE5541EA1790600B82304 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomImageView.swift; path = Utils/CustomImageView.swift; sourceTree = "<group>"; };
 		F9AEE5571EA1816000B82304 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = Home/HomeController.swift; sourceTree = "<group>"; };
 		F9AEE5591EA1824E00B82304 /* HomePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomePostCell.swift; path = Home/HomePostCell.swift; sourceTree = "<group>"; };
+		F9F271991EA3F35500155B70 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseUtils.swift; path = Utils/FirebaseUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 			children = (
 				F94D7F601EA0037300AB71B4 /* Extensions.swift */,
 				F9AEE5541EA1790600B82304 /* CustomImageView.swift */,
+				F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				F94D7F6D1EA01CBE00AB71B4 /* Post.swift */,
+				F9F271991EA3F35500155B70 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */,
 				F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */,
 				F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */,
 				F901CF591E9EC485007CC40D /* PhotoSelectorController.swift in Sources */,
@@ -321,6 +328,7 @@
 				F94D7F6E1EA01CBE00AB71B4 /* Post.swift in Sources */,
 				F94D7F5E1EA0000200AB71B4 /* SharePhotoController.swift in Sources */,
 				F94D7F701EA0202B00AB71B4 /* UserProfilePhotoCell.swift in Sources */,
+				F9F2719A1EA3F35500155B70 /* User.swift in Sources */,
 				F91FC8411E9FF87D00B25A48 /* PhotoSelectorHeader.swift in Sources */,
 				F94D7F6B1EA0045400AB71B4 /* UserProfileController.swift in Sources */,
 				F94D7F691EA0041500AB71B4 /* MainTabBarController.swift in Sources */,
