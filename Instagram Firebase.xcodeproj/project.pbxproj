@@ -29,6 +29,8 @@
 		F9F2719A1EA3F35500155B70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F271991EA3F35500155B70 /* User.swift */; };
 		F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */; };
 		F9F2719E1EA4011F00155B70 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2719D1EA4011F00155B70 /* PhotoCell.swift */; };
+		F9F271A11EA40E6600155B70 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F271A01EA40E6600155B70 /* UserSearchController.swift */; };
+		F9F271A31EA412D200155B70 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F271A21EA412D200155B70 /* UserSearchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		F9F271991EA3F35500155B70 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseUtils.swift; path = Utils/FirebaseUtils.swift; sourceTree = "<group>"; };
 		F9F2719D1EA4011F00155B70 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCell.swift; path = Utils/PhotoCell.swift; sourceTree = "<group>"; };
+		F9F271A01EA40E6600155B70 /* UserSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSearchController.swift; path = Search/UserSearchController.swift; sourceTree = "<group>"; };
+		F9F271A21EA412D200155B70 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSearchCell.swift; path = Search/UserSearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +123,12 @@
 		F924400F1E957EB6001748F6 /* Instagram Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				F9AEE5561EA1814B00B82304 /* Home */,
-				F94D7F6C1EA01C9A00AB71B4 /* Models */,
 				F9A5FAE41E968109009F9115 /* Login */,
+				F9AEE5561EA1814B00B82304 /* Home */,
+				F9F2719F1EA40E2100155B70 /* Search */,
 				F901CF571E9EC468007CC40D /* NewPost */,
 				F9A5FADF1E965D45009F9115 /* User Profile */,
+				F94D7F6C1EA01C9A00AB71B4 /* Models */,
 				F92440241E958644001748F6 /* Storyboards */,
 				F94D7F5F1EA0036000AB71B4 /* Utils */,
 				F94D7F621EA0041500AB71B4 /* AppDelegate.swift */,
@@ -190,6 +195,15 @@
 				F9AEE5591EA1824E00B82304 /* HomePostCell.swift */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		F9F2719F1EA40E2100155B70 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F9F271A01EA40E6600155B70 /* UserSearchController.swift */,
+				F9F271A21EA412D200155B70 /* UserSearchCell.swift */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,8 +333,10 @@
 			files = (
 				F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */,
 				F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */,
+				F9F271A11EA40E6600155B70 /* UserSearchController.swift in Sources */,
 				F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */,
 				F901CF591E9EC485007CC40D /* PhotoSelectorController.swift in Sources */,
+				F9F271A31EA412D200155B70 /* UserSearchCell.swift in Sources */,
 				F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */,
 				F94D7F6E1EA01CBE00AB71B4 /* Post.swift in Sources */,
 				F94D7F5E1EA0000200AB71B4 /* SharePhotoController.swift in Sources */,
