@@ -70,6 +70,12 @@ class HomeController: UICollectionViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension HomeController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: view.frame.width, height: 200)
+    
+    var height: CGFloat = 40 + 8 + 8 //header of cell
+    height += view.frame.width // image
+    height += 50 // bottom buttons
+    height += 80 // caption
+    
+    return CGSize(width: view.frame.width, height: height)
   }
 }

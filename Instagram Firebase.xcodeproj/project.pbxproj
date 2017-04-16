@@ -18,7 +18,6 @@
 		F94D7F611EA0037300AB71B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F601EA0037300AB71B4 /* Extensions.swift */; };
 		F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F621EA0041500AB71B4 /* AppDelegate.swift */; };
 		F94D7F671EA0041500AB71B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F94D7F631EA0041500AB71B4 /* GoogleService-Info.plist */; };
-		F94D7F681EA0041500AB71B4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F94D7F641EA0041500AB71B4 /* Info.plist */; };
 		F94D7F691EA0041500AB71B4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F651EA0041500AB71B4 /* MainTabBarController.swift */; };
 		F94D7F6B1EA0045400AB71B4 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F6A1EA0045400AB71B4 /* UserProfileController.swift */; };
 		F94D7F6E1EA01CBE00AB71B4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F6D1EA01CBE00AB71B4 /* Post.swift */; };
@@ -254,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F924402A1E958697001748F6 /* Main.storyboard in Resources */,
-				F94D7F681EA0041500AB71B4 /* Info.plist in Resources */,
 				F94D7F671EA0041500AB71B4 /* GoogleService-Info.plist in Resources */,
 				F92440181E957EB6001748F6 /* Assets.xcassets in Resources */,
 				F92440291E958697001748F6 /* LaunchScreen.storyboard in Resources */,
