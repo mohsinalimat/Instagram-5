@@ -35,6 +35,7 @@ class UserSearchController: UICollectionViewController {
     collectionView?.backgroundColor = .white
     collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
     collectionView?.alwaysBounceVertical = true
+    collectionView?.keyboardDismissMode = .onDrag
     
     navigationController?.navigationBar.addSubview(searchBar)
     
@@ -63,6 +64,12 @@ class UserSearchController: UICollectionViewController {
       print("Failed to fetch users for search: ", error)
     }
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    searchBar.isHidden = false
+  }
 }
 
 // MARK: - UICollectionViewController
@@ -75,6 +82,17 @@ extension UserSearchController {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
     cell.user = filteredUsers[indexPath.row]
     return cell
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    searchBar.isHidden = true
+    searchBar.resignFirstResponder()
+    
+    let user = filteredUsers[indexPath.row]
+    
+    let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+    userProfileController.userId = user.uid
+    navigationController?.pushViewController(userProfileController, animated: true)
   }
 }
 

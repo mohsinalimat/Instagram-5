@@ -14,6 +14,7 @@ class UserProfileController: UICollectionViewController {
   // MARK: - Variables
   var user: User?
   var posts = [Post]()
+  var userId: String?
   
   // MARK: - Handlers
   func handleLogout() {
@@ -45,21 +46,25 @@ class UserProfileController: UICollectionViewController {
     setupLogoutButton()
     
     fetchUser()
-    fetchOrderedPosts()
+//    fetchOrderedPosts()
   }
   
   private func fetchUser() {
-    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+    let uid = userId ?? FIRAuth.auth()?.currentUser?.uid ?? ""
+    
+//    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
     
     FIRDatabase.fetchUser(with: uid) { (user) in
       self.user = user
       self.navigationItem.title = self.user?.username
       self.collectionView?.reloadData()
+      
+      self.fetchOrderedPosts()
     }
   }
   
   private func fetchOrderedPosts() {
-    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+    guard let uid = user?.uid else { return }
     
     FIRDatabase.database().reference().child("posts")
       .child(uid)
