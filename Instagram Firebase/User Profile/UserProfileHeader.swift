@@ -11,6 +11,7 @@ import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
   
+  // MARK: - Variables
   var user: User? {
     didSet {
       guard let profileImageUrl = user?.profileImageUrl else { return }
@@ -20,6 +21,7 @@ class UserProfileHeader: UICollectionViewCell {
     }
   }
   
+  // MARK: - UI
   let profileImageView: CustomImageView = {
     let imageView = CustomImageView()
     return imageView
@@ -94,6 +96,7 @@ class UserProfileHeader: UICollectionViewCell {
     return button
   }()
   
+  // MARK: - Initializers
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -119,6 +122,7 @@ class UserProfileHeader: UICollectionViewCell {
     setupBottomToolbar()
   }
   
+  // MARK: - Functions
   private func setupUserStats() -> UIView {
     let stackView = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
     stackView.distribution = .fillEqually
@@ -135,8 +139,7 @@ class UserProfileHeader: UICollectionViewCell {
     
     addSubview(stackView)
     stackView.anchor(leading: leadingAnchor, trailing: trailingAnchor, bottom: bottomAnchor, heightConstant: 50)
-    [stackView.topAnchor, stackView.bottomAnchor].forEach {
-      [unowned self] anchor in
+    [stackView.topAnchor, stackView.bottomAnchor].forEach { [unowned self] (anchor) in
       let v = UIView()
       v.backgroundColor = .lightGray
       self.addSubview(v)

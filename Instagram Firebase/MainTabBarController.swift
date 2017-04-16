@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class MainTabBarController: UITabBarController {
+  
+  // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
     

@@ -12,8 +12,10 @@ var imageCache = [String: UIImage]()
 
 class CustomImageView: UIImageView {
   
+  // MARK: - Variables
   var lastUrlUsed: String?
   
+  // MARK: - Functions
   func loadImage(url urlString: String) {
     
     lastUrlUsed = urlString

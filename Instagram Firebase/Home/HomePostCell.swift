@@ -10,6 +10,7 @@ import UIKit
 
 class HomePostCell: UICollectionViewCell {
   
+  // MARK: - Variables
   var post: Post? {
     didSet {
       guard let imageUrl = post?.imageUrl else { return }
@@ -25,6 +26,7 @@ class HomePostCell: UICollectionViewCell {
     }
   }
   
+  // MARK: - UI
   let userProfileImageView: CustomImageView = {
     let iv = CustomImageView()
     iv.contentMode = .scaleAspectFill
@@ -87,6 +89,11 @@ class HomePostCell: UICollectionViewCell {
     return label
   }()
   
+  // MARK: - Initializers
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -109,6 +116,7 @@ class HomePostCell: UICollectionViewCell {
     captionLabel.anchor(top: likeButton.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leadingConstant: 8, trailingConstant: 8)
   }
   
+  // MARK: - Functions
   private func setupActionButtons() {
     let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, directButton])
     stackView.distribution = .fillEqually
@@ -128,10 +136,6 @@ class HomePostCell: UICollectionViewCell {
     attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 4)]))
     attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.gray]))
     captionLabel.attributedText = attributedText
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
   
   override func layoutSubviews() {

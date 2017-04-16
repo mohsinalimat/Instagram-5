@@ -11,10 +11,13 @@ import Firebase
 
 class HomeController: UICollectionViewController {
   
+  // MARK: - Literals
   let cellId = "cellId"
   
+  // MARK: - Variables
   var posts = [Post]()
   
+  // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -42,8 +45,7 @@ class HomeController: UICollectionViewController {
     FIRDatabase.database().reference().child("posts").child(user.uid).observeSingleEvent(of: .value, with: { [unowned self] (snapshop) in
       guard let dictionaries = snapshop.value as? [String: Any] else { return }
       
-      dictionaries.forEach{
-        key, value in
+      dictionaries.forEach { (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
         
         do {
@@ -60,8 +62,10 @@ class HomeController: UICollectionViewController {
       print("Failed to fetch posts from db: ", error)
     }
   }
-  
-  /// MARK: - UICollectionView stuff
+}
+
+// MARK: - UICollectionViewController
+extension HomeController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return posts.count
   }

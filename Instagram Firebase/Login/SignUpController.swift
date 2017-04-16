@@ -11,6 +11,7 @@ import Firebase
 
 class SignUpController: UIViewController {
   
+  // MARK: - UI
   let plusPhotoButton: UIButton = {
     let button = UIButton(type: .system)
     button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
@@ -71,6 +72,7 @@ class SignUpController: UIViewController {
     return button
   }()
   
+  // MARK: - Handlers
   func handlePlusPhoto() {
     let imagePickerController = UIImagePickerController()
     imagePickerController.allowsEditing = true
@@ -99,8 +101,7 @@ class SignUpController: UIViewController {
         return
     }
     
-    FIRAuth.auth()?.createUser(withEmail: email, password: password) {
-      [unowned self] user, error in
+    FIRAuth.auth()?.createUser(withEmail: email, password: password) { [unowned self] (user, error) in
       
       if let error = error {
         print("Error creating new user: ", error)
@@ -113,8 +114,7 @@ class SignUpController: UIViewController {
       guard let uploadData = UIImageJPEGRepresentation(image, 0.2) else { return }
       
       let uuidString = UUID().uuidString
-      FIRStorage.storage().reference().child("profile_images").child(uuidString).put(uploadData, metadata: nil) {
-        metadata, error in
+      FIRStorage.storage().reference().child("profile_images").child(uuidString).put(uploadData, metadata: nil) { (metadata, error) in
         
         if let error = error {
           print("Failed to upload profile image: ", error)
@@ -128,8 +128,7 @@ class SignUpController: UIViewController {
         let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl]
         let values = [uid: dictionaryValues]
         
-        FIRDatabase.database().reference().child("users").updateChildValues(values) {
-          error, reference in
+        FIRDatabase.database().reference().child("users").updateChildValues(values) { (error, reference) in
           if let error = error {
             print("Error setting new values for user: \(error)")
             return
@@ -151,6 +150,7 @@ class SignUpController: UIViewController {
     _ = navigationController?.popViewController(animated: true)
   }
   
+  // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -176,7 +176,7 @@ class SignUpController: UIViewController {
   }
 }
 
-/// MARK: - UIImagePickerControllerDelegate
+// MARK: - UIImagePickerControllerDelegate
 extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {

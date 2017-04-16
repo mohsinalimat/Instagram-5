@@ -11,13 +11,32 @@ import Firebase
 
 class UserProfileController: UICollectionViewController {
   
+  // MARK: - Variables
   var user: User?
   var posts = [Post]()
   
+  // MARK: - Handlers
+  func handleLogout() {
+    let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    actionSheetController.addAction(UIAlertAction(title: "Log Out", style: .destructive) { [unowned self] _ in
+      do {
+        try FIRAuth.auth()?.signOut()
+        let loginController = LoginController()
+        let navController = UINavigationController(rootViewController: loginController)
+        self.present(navController, animated: true, completion: nil)
+      } catch let error {
+        print("Failed to sign out: ", error)
+      }
+      print("Successfully signed out")
+    })
+    actionSheetController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    
+    present(actionSheetController, animated: true, completion: nil)
+  }
+  
+  // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    fetchUser()
     
     collectionView?.backgroundColor = .white
     collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
@@ -25,6 +44,7 @@ class UserProfileController: UICollectionViewController {
     
     setupLogoutButton()
     
+    fetchUser()
     fetchOrderedPosts()
   }
   
@@ -41,8 +61,10 @@ class UserProfileController: UICollectionViewController {
   private func fetchOrderedPosts() {
     guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
     
-    let ref = FIRDatabase.database().reference().child("posts").child(uid)
-    ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { [unowned self] (snapshot) in
+    FIRDatabase.database().reference().child("posts")
+      .child(uid)
+      .queryOrdered(byChild: "creationDate")
+      .observe(.childAdded, with: { [unowned self] (snapshot) in
       guard let dictionary = snapshot.value as? [String: Any],
         let user = self.user else { return }
       
@@ -63,28 +85,10 @@ class UserProfileController: UICollectionViewController {
   private func setupLogoutButton() {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear"), style: .plain, target: self, action: #selector(handleLogout))
   }
-  
-  func handleLogout() {
-    let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    actionSheetController.addAction(UIAlertAction(title: "Log Out", style: .destructive) {
-      [unowned self] _ in
-      do {
-        try FIRAuth.auth()?.signOut()
-        let loginController = LoginController()
-        let navController = UINavigationController(rootViewController: loginController)
-        self.present(navController, animated: true, completion: nil)
-      } catch let error {
-        print("Failed to sign out: ", error)
-      }
-      print("Successfully signed out")
-    })
-    actionSheetController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    
-    present(actionSheetController, animated: true, completion: nil)
-  }
-  
-  // MARK: - CollectionView
-  
+}
+
+// MARK: - UICollectionViewController
+extension UserProfileController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return posts.count
   }

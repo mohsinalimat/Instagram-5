@@ -11,6 +11,11 @@ import Firebase
 
 class LoginController: UIViewController {
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
+  // MARK: - UI
   let logoContainerView: UIView = {
     let view = UIView()
     view.backgroundColor = #colorLiteral(red: 0, green: 0.4705882353, blue: 0.6862745098, alpha: 1)
@@ -65,9 +70,10 @@ class LoginController: UIViewController {
     return button
   }()
   
+  // MARK: - Handlers
   func handleTextInputChange() {
     let isFormValid = !(emailTextField.text?.isEmpty ?? true) &&
-      !(passwordTextField.text?.isEmpty ?? true)
+                      !(passwordTextField.text?.isEmpty ?? true)
     
     if isFormValid {
       loginButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.6039215686, blue: 0.9294117647, alpha: 1)
@@ -81,8 +87,7 @@ class LoginController: UIViewController {
   func handleLogin() {
     guard let email = emailTextField.text, let password = passwordTextField.text else { return }
     
-    FIRAuth.auth()?.signIn(withEmail: email, password: password) {
-      [unowned self] user, error in
+    FIRAuth.auth()?.signIn(withEmail: email, password: password) { [unowned self] (user, error) in
       if let error = error {
         print("Failed to login with error: ", error)
         return
@@ -101,10 +106,7 @@ class LoginController: UIViewController {
     navigationController?.pushViewController(SignUpController(), animated: true)
   }
   
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .lightContent
-  }
-  
+  // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
     

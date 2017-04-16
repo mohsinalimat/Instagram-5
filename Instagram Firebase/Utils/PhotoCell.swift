@@ -10,9 +10,9 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
   
-  // MARK: - Variables
-  let imageView: UIImageView = {
-    let iv = UIImageView()
+  // MARK: - UI
+  let imageView: CustomImageView = {
+    let iv = CustomImageView()
     iv.contentMode = .scaleAspectFill
     iv.clipsToBounds = true
     return iv

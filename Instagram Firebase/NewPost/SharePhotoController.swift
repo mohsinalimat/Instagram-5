@@ -11,12 +11,18 @@ import Firebase
 
 class SharePhotoController: UIViewController {
   
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+  
+  // MARK: - Variables
   var selectedImage: UIImage? {
     didSet {
       imageView.image = selectedImage
     }
   }
   
+  // MARK: - UI
   var imageView: UIImageView = {
     let iv = UIImageView()
     iv.contentMode = .scaleAspectFill
@@ -30,19 +36,7 @@ class SharePhotoController: UIViewController {
     return tv
   }()
   
-  override var prefersStatusBarHidden: Bool {
-    return true
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
-    
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
-    
-    setupImageAndTextViews()
-  }
-  
+  // MARK: - Handlers
   func handleShare() {
     guard let image = selectedImage,
       let uploadData = UIImageJPEGRepresentation(image, 0.2) else { return }
@@ -50,8 +44,7 @@ class SharePhotoController: UIViewController {
     navigationItem.rightBarButtonItem?.isEnabled = false
     
     let filename = UUID().uuidString
-    FIRStorage.storage().reference().child("posts").child(filename).put(uploadData, metadata: nil) {
-      [unowned self] metadata, error in
+    FIRStorage.storage().reference().child("posts").child(filename).put(uploadData, metadata: nil) { [unowned self] (metadata, error) in
       
       if let error = error {
         self.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -67,13 +60,21 @@ class SharePhotoController: UIViewController {
     }
   }
   
+  // MARK: - Functions
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
+    
+    setupImageAndTextViews()
+  }
+  
   private func saveToDatabase(with imageUrl: String) {
     guard let uid = FIRAuth.auth()?.currentUser?.uid,
 //      let caption = textView.text,
       let postImage = selectedImage else { return }
     
-    let userPostRef = FIRDatabase.database().reference().child("posts").child(uid)
-    let ref = userPostRef.childByAutoId()
     var values: [String: Any] = [
       "imageUrl": imageUrl,
 //      "caption": caption,
@@ -83,8 +84,11 @@ class SharePhotoController: UIViewController {
     if let caption = textView.text, !caption.isEmpty {
       values["caption"] = caption
     }
-    ref.updateChildValues(values) {
-      [unowned self] err, ref in
+    
+    FIRDatabase.database().reference().child("posts")
+      .child(uid)
+      .childByAutoId()
+      .updateChildValues(values) { [unowned self] (err, ref) in
       if let error = err {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         print("Failed to save image into db: ", error)
