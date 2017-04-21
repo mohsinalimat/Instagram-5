@@ -18,6 +18,8 @@ class UserProfileHeader: UICollectionViewCell {
       profileImageView.loadImage(url: profileImageUrl)
       
       usernameLabel.text = user?.username
+      
+      setupEditFollowButton()
     }
   }
   
@@ -57,7 +59,7 @@ class UserProfileHeader: UICollectionViewCell {
     return label
   }()
   
-  let editProfileButton: UIButton = {
+  lazy var editProfileFollowButton: UIButton = {
     let button = UIButton(type: .system)
     button.setTitle("Edit Profile", for: .normal)
     button.setTitleColor(.black, for: .normal)
@@ -65,6 +67,7 @@ class UserProfileHeader: UICollectionViewCell {
     button.layer.borderColor = UIColor.lightGray.cgColor
     button.layer.borderWidth = 0.5
     button.layer.cornerRadius = 4
+    button.addTarget(self, action: #selector(handleEditFollow), for: .touchUpInside)
     return button
   }()
   
@@ -113,13 +116,29 @@ class UserProfileHeader: UICollectionViewCell {
     
     let statsView = setupUserStats()
     
-    addSubview(editProfileButton)
-    editProfileButton.anchor(top: postsLabel.bottomAnchor, leading: statsView.leadingAnchor, trailing: statsView.trailingAnchor, topConstant: 6, leadingConstant: 4, trailingConstant: 4, heightConstant: 28)
+    addSubview(editProfileFollowButton)
+    editProfileFollowButton.anchor(top: postsLabel.bottomAnchor, leading: statsView.leadingAnchor, trailing: statsView.trailingAnchor, topConstant: 6, leadingConstant: 4, trailingConstant: 4, heightConstant: 28)
     
     addSubview(usernameLabel)
     usernameLabel.anchor(top: profileImageView.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, topConstant: 12, leadingConstant: 12, trailingConstant: 12)
     
     setupBottomToolbar()
+  }
+  
+  // MARK: - Handlers
+  func handleEditFollow() {
+    guard let currentUid = FIRAuth.auth()?.currentUser?.uid,
+      let userId = user?.uid else { return }
+    
+    let values = [userId: 1]
+    FIRDatabase.database().reference().child("following").child(currentUid).updateChildValues(values) { (error, ref) in
+      if let error = error {
+        print("Failed to follow user:", error)
+        return
+      }
+      
+      print("Successfully followed user:", self.user?.uid ?? "")
+    }
   }
   
   // MARK: - Functions
@@ -131,6 +150,19 @@ class UserProfileHeader: UICollectionViewCell {
     stackView.anchor(top: profileImageView.topAnchor, leading: profileImageView.trailingAnchor, trailing: trailingAnchor, leadingConstant: 12, trailingConstant: 12)
     
     return stackView
+  }
+  
+  private func setupEditFollowButton() {
+    guard let currentUserId = FIRAuth.auth()?.currentUser?.uid,
+      let userId = user?.uid else { return }
+    
+    if userId == currentUserId {
+      editProfileFollowButton.setTitle("Edit Profile", for: .normal)
+    } else {
+      editProfileFollowButton.setTitle("Follow", for: .normal)
+      editProfileFollowButton.setTitleColor(.white, for: .normal)
+      editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.6039215686, blue: 0.9294117647, alpha: 1)
+    }
   }
   
   private func setupBottomToolbar() {

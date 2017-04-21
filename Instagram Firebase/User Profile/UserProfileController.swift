@@ -46,13 +46,10 @@ class UserProfileController: UICollectionViewController {
     setupLogoutButton()
     
     fetchUser()
-//    fetchOrderedPosts()
   }
   
   private func fetchUser() {
     let uid = userId ?? FIRAuth.auth()?.currentUser?.uid ?? ""
-    
-//    guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
     
     FIRDatabase.fetchUser(with: uid) { (user) in
       self.user = user
