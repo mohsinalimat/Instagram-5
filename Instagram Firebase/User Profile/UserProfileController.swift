@@ -26,7 +26,7 @@ class UserProfileController: UICollectionViewController {
         let navController = UINavigationController(rootViewController: loginController)
         self.present(navController, animated: true, completion: nil)
       } catch let error {
-        print("Failed to sign out: ", error)
+        print("Failed to sign out:", error)
       }
       print("Successfully signed out")
     })
@@ -77,10 +77,10 @@ class UserProfileController: UICollectionViewController {
         
         self.collectionView?.reloadData()
       } catch let error {
-        print("Failed to initialize Post: ", error)
+        print("Failed to initialize Post:", error)
       }
     }) { (error) in
-      print("Failed to fetch ordered posts: ", error)
+      print("Failed to fetch ordered posts:", error)
     }
   }
   

@@ -104,11 +104,11 @@ class SignUpController: UIViewController {
     FIRAuth.auth()?.createUser(withEmail: email, password: password) { [unowned self] (user, error) in
       
       if let error = error {
-        print("Error creating new user: ", error)
+        print("Error creating new user:", error)
         return
       }
       
-      print("Created user: ", user?.uid ?? "")
+      print("Created user:", user?.uid ?? "")
       
       guard let image = self.plusPhotoButton.imageView?.image else { return }
       guard let uploadData = UIImageJPEGRepresentation(image, 0.2) else { return }
@@ -117,11 +117,11 @@ class SignUpController: UIViewController {
       FIRStorage.storage().reference().child("profile_images").child(uuidString).put(uploadData, metadata: nil) { (metadata, error) in
         
         if let error = error {
-          print("Failed to upload profile image: ", error)
+          print("Failed to upload profile image:", error)
         }
         guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
         
-        print("Successfully uploaded profile image: ", profileImageUrl)
+        print("Successfully uploaded profile image:", profileImageUrl)
         
         guard let uid = user?.uid else { return }
         

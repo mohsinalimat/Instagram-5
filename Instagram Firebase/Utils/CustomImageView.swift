@@ -29,7 +29,7 @@ class CustomImageView: UIImageView {
     
     URLSession.shared.dataTask(with: url) { [unowned self] (data, response, error) in
       if let error = error {
-        print("Failed to load image from db: ", error)
+        print("Failed to load image from db:", error)
         return
       }
       

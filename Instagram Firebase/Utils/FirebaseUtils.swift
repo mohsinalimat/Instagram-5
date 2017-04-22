@@ -18,7 +18,7 @@ extension FIRDatabase {
       
       completion(user)
     }) { (error) in
-      print("Failed to fetch user: ", error)
+      print("Failed to fetch user:", error)
     }
   }
 }

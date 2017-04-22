@@ -89,11 +89,11 @@ class LoginController: UIViewController {
     
     FIRAuth.auth()?.signIn(withEmail: email, password: password) { [unowned self] (user, error) in
       if let error = error {
-        print("Failed to login with error: ", error)
+        print("Failed to login with error:", error)
         return
       }
       
-      print("Successfully logged back in with user: ", user?.uid ?? "")
+      print("Successfully logged back in with user:", user?.uid ?? "")
       
       guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
       mainTabBarController.setupViewControllers()

@@ -48,13 +48,13 @@ class SharePhotoController: UIViewController {
       
       if let error = error {
         self.navigationItem.rightBarButtonItem?.isEnabled = true
-        print("Failed to upload an image to Firebase with error: ", error)
+        print("Failed to upload an image to Firebase with error:", error)
         return
       }
       
       guard let imageUrl = metadata?.downloadURL()?.absoluteString else { return }
       
-      print("Successfully uploaded an image to Firebase: ", imageUrl)
+      print("Successfully uploaded an image to Firebase:", imageUrl)
       
       self.saveToDatabase(with: imageUrl)
     }
@@ -91,7 +91,7 @@ class SharePhotoController: UIViewController {
       .updateChildValues(values) { [unowned self] (err, ref) in
       if let error = err {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
-        print("Failed to save image into db: ", error)
+        print("Failed to save image into db:", error)
       }
       
       print("Successfully saved image into db")

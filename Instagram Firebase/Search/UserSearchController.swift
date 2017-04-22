@@ -61,7 +61,7 @@ class UserSearchController: UICollectionViewController {
       self.filteredUsers = self.users
       self.collectionView?.reloadData()
     }) { (error) in
-      print("Failed to fetch users for search: ", error)
+      print("Failed to fetch users for search:", error)
     }
   }
   

@@ -53,13 +53,13 @@ class HomeController: UICollectionViewController {
             self.posts.append(post)
           }
         } catch let error {
-          print("Failed to initialize post with error: ", error)
+          print("Failed to initialize post with error:", error)
         }
       }
       
       self.collectionView?.reloadData()
     }) { (error) in
-      print("Failed to fetch posts from db: ", error)
+      print("Failed to fetch posts from db:", error)
     }
   }
 }
