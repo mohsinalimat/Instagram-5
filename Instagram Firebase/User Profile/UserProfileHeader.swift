@@ -61,7 +61,6 @@ class UserProfileHeader: UICollectionViewCell {
   
   lazy var editProfileFollowButton: UIButton = {
     let button = UIButton(type: .system)
-    button.setTitle("Edit Profile", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     button.layer.borderColor = UIColor.lightGray.cgColor
@@ -73,7 +72,6 @@ class UserProfileHeader: UICollectionViewCell {
   
   let usernameLabel: UILabel = {
     let label = UILabel()
-    label.text = "username"
     label.font = UIFont.boldSystemFont(ofSize: 14)
     return label
   }()
@@ -130,14 +128,29 @@ class UserProfileHeader: UICollectionViewCell {
     guard let currentUid = FIRAuth.auth()?.currentUser?.uid,
       let userId = user?.uid else { return }
     
-    let values = [userId: 1]
-    FIRDatabase.database().reference().child("following").child(currentUid).updateChildValues(values) { (error, ref) in
-      if let error = error {
-        print("Failed to follow user:", error)
-        return
+    if editProfileFollowButton.titleLabel?.text == "Follow" {
+      let values = [userId: 1]
+      FIRDatabase.database().reference().child("following").child(currentUid).updateChildValues(values) { (error, ref) in
+        if let error = error {
+          print("Failed to follow user:", error)
+          return
+        }
+        
+        print("Successfully followed user:", self.user?.uid ?? "")
+        
+        self.setupFollowStyle(isFollow: false)
       }
-      
-      print("Successfully followed user:", self.user?.uid ?? "")
+    } else {
+      FIRDatabase.database().reference().child("following").child(currentUid).child(userId).removeValue(completionBlock: { (error, ref) in
+        if let error = error {
+          print("Failed to check for unfollow:", error)
+          return
+        }
+        
+        print("Successfully unfollow user:", self.user?.username ?? "")
+        
+        self.setupFollowStyle(isFollow: true)
+      })
     }
   }
   
@@ -159,9 +172,33 @@ class UserProfileHeader: UICollectionViewCell {
     if userId == currentUserId {
       editProfileFollowButton.setTitle("Edit Profile", for: .normal)
     } else {
+      FIRDatabase.database().reference().child("following").child(currentUserId).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+        if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+          self.editProfileFollowButton.setTitle("Unfollow", for: .normal)
+        } else {
+          self.setupFollowStyle(isFollow: true)
+        }
+      }, withCancel: { (error) in
+        print("Failed to fetch following user", error)
+      })
+    }
+  }
+  
+  private func setupFollowStyle(isFollow: Bool) {
+    if isFollow {
       editProfileFollowButton.setTitle("Follow", for: .normal)
       editProfileFollowButton.setTitleColor(.white, for: .normal)
-      editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.6039215686, blue: 0.9294117647, alpha: 1)
+      UIView.animate(withDuration: 0.15) {
+        self.editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.6039215686, blue: 0.9294117647, alpha: 1)
+      }
+      editProfileFollowButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+    } else {
+      editProfileFollowButton.setTitle("Unfollow", for: .normal)
+      editProfileFollowButton.setTitleColor(.black, for: .normal)
+      UIView.animate(withDuration: 0.15) {
+        self.editProfileFollowButton.backgroundColor = .white
+      }
+      editProfileFollowButton.layer.borderColor = UIColor.lightGray.cgColor
     }
   }
   
