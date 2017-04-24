@@ -20,6 +20,12 @@ class HomeController: UICollectionViewController {
     return posts.sorted { $0.creationDate.compare($1.creationDate) == .orderedDescending }
   }
   
+  // MARK: - Handlers
+  func handleRefresh() {
+    posts.removeAll()
+    fetchPosts()
+  }
+  
   // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,6 +33,15 @@ class HomeController: UICollectionViewController {
     collectionView?.backgroundColor = .white
     
     collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    collectionView?.refreshControl = refreshControl
+    
+    let name = Notification.Name(rawValue: "updateFeed")
+    NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { (_) in
+      self.handleRefresh()
+    }
     
     setupNavigationItems()
     fetchPosts()
@@ -69,6 +84,7 @@ class HomeController: UICollectionViewController {
       }
       
       self.collectionView?.reloadData()
+      self.collectionView?.refreshControl?.endRefreshing()
     }) { (error) in
       print("Failed to fetch posts from db:", error)
     }

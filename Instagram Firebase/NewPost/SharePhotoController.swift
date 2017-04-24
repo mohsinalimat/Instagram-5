@@ -89,14 +89,17 @@ class SharePhotoController: UIViewController {
       .child(uid)
       .childByAutoId()
       .updateChildValues(values) { [unowned self] (err, ref) in
-      if let error = err {
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        print("Failed to save image into db:", error)
-      }
-      
-      print("Successfully saved image into db")
-      
-      self.dismiss(animated: true, completion: nil)
+        if let error = err {
+          self.navigationItem.rightBarButtonItem?.isEnabled = false
+          print("Failed to save image into db:", error)
+        }
+        
+        print("Successfully saved image into db")
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        let name = Notification.Name(rawValue: "updateFeed")
+        NotificationCenter.default.post(name: name, object: nil)
     }
   }
   
