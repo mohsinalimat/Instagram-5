@@ -16,6 +16,9 @@ class HomeController: UICollectionViewController {
   
   // MARK: - Variables
   var posts = [Post]()
+  var filteredPosts: [Post] {
+    return posts.sorted { $0.creationDate.compare($1.creationDate) == .orderedDescending }
+  }
   
   // MARK: - Functions
   override func viewDidLoad() {
@@ -36,8 +39,16 @@ class HomeController: UICollectionViewController {
   private func fetchPosts() {
     guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
     
-    FIRDatabase.fetchUser(with: uid) { [unowned self] (user) in
-      self.fetchPosts(for: user)
+    FIRDatabase.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
+      guard let userDictionaries = snapshot.value as? [String: Any] else { return }
+      
+      userDictionaries.forEach { (key, value) in
+        FIRDatabase.fetchUser(with: key) { [unowned self] (user) in
+          self.fetchPosts(for: user)
+        }
+      }
+    }) { (error) in
+      print("Failed to fetch following users", error)
     }
   }
   
@@ -67,12 +78,12 @@ class HomeController: UICollectionViewController {
 // MARK: - UICollectionViewController
 extension HomeController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return posts.count
+    return filteredPosts.count
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
-    cell.post = posts[indexPath.row]
+    cell.post = filteredPosts[indexPath.row]
     return cell
   }
 }

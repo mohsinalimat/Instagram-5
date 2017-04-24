@@ -119,6 +119,7 @@ class SignUpController: UIViewController {
         if let error = error {
           print("Failed to upload profile image:", error)
         }
+        
         guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
         
         print("Successfully uploaded profile image:", profileImageUrl)
@@ -136,10 +137,18 @@ class SignUpController: UIViewController {
           
           print("New values for user(\(user?.uid ?? "")) set")
           
-          guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-          mainTabBarController.setupViewControllers()
-          
-          self.dismiss(animated: true, completion: nil)
+          let values = [uid: 1]
+          FIRDatabase.database().reference().child("following").child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
+            if let error = error {
+              print("Failed to follow user by himself:", error)
+              return
+            }
+            
+            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+            mainTabBarController.setupViewControllers()
+            
+            self.dismiss(animated: true, completion: nil)
+          })
         }
 
       }

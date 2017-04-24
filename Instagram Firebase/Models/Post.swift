@@ -16,6 +16,7 @@ struct Post {
   let imageUrl: String
   let user: User
   let caption: String
+  let creationDate: Date
   
   init?(with user: User, from dictionary: [String: Any]) throws {
     guard let imageUrl = dictionary["imageUrl"] as? String else {
@@ -26,5 +27,8 @@ struct Post {
     self.user = user
     
     self.caption = dictionary["caption"] as? String ?? ""
+    
+    let seconds = dictionary["creationDate"] as? Double ?? 0
+    self.creationDate = Date(timeIntervalSince1970: seconds)
   }
 }
