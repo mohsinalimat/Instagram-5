@@ -26,6 +26,11 @@ class HomeController: UICollectionViewController {
     fetchPosts()
   }
   
+  func handleCamera() {
+    let cameraController = CameraController()
+    present(cameraController, animated: true, completion: nil)
+  }
+  
   // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -49,6 +54,8 @@ class HomeController: UICollectionViewController {
   
   private func setupNavigationItems() {
     navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+    
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
   }
   
   private func fetchPosts() {

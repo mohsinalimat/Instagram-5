@@ -1,0 +1,82 @@
+//
+//  CameraController.swift
+//  Instagram Firebase
+//
+//  Created by Vyacheslav Nagornyak on 4/25/17.
+//  Copyright © 2017 Vyacheslav Nagornyak. All rights reserved.
+//
+
+import UIKit
+import AVFoundation
+
+class CameraController: UIViewController {
+  
+  // MARK: - UI
+  let dismissButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setImage(#imageLiteral(resourceName: "right_arrow_shadow").withRenderingMode(.alwaysOriginal), for: .normal)
+    button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+    return button
+  }()
+  
+  let captureButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setImage(#imageLiteral(resourceName: "capture_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+    button.addTarget(self, action: #selector(handleCapture), for: .touchUpInside)
+    return button
+  }()
+  
+  // MARK: - Handlers
+  func handleCapture() {
+    
+  }
+  
+  func handleDismiss() {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  // MARK: - Functions
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    setupCaptureSession()
+    setupViews()
+  }
+  
+  private func setupCaptureSession() {
+    let captureSession = AVCaptureSession()
+    
+    // Input
+    let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    do {
+      let input = try AVCaptureDeviceInput(device: captureDevice)
+      if captureSession.canAddInput(input) {
+        captureSession.addInput(input)
+      }
+    } catch let error {
+      print("Failed to setup AVCaptureDeviceInput:", error)
+    }
+    
+    // Output
+    let output = AVCapturePhotoOutput()
+    if captureSession.canAddOutput(output) {
+      captureSession.addOutput(output)
+    }
+    
+    // Preview
+    guard let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) else { return }
+    
+    previewLayer.frame = view.frame
+    view.layer.addSublayer(previewLayer)
+    
+    captureSession.startRunning()
+  }
+  
+  private func setupViews() {
+    view.addSubview(dismissButton)
+    view.addSubview(captureButton)
+    
+    dismissButton.anchor(top: view.topAnchor, trailing: view.trailingAnchor, width: dismissButton.heightAnchor, topConstant: 12, trailingConstant: 12, heightConstant: 50)
+    captureButton.anchor(bottom: view.bottomAnchor, centerX: view.centerXAnchor, width: captureButton.heightAnchor, bottomConstant: 24, heightConstant: 80)
+  }
+}

@@ -12,6 +12,7 @@
 		F92440181E957EB6001748F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92440171E957EB6001748F6 /* Assets.xcassets */; };
 		F92440291E958697001748F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92440251E958697001748F6 /* LaunchScreen.storyboard */; };
 		F924402A1E958697001748F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92440271E958697001748F6 /* Main.storyboard */; };
+		F94D3F1A1EAF86BA0056974E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D3F191EAF86BA0056974E /* CameraController.swift */; };
 		F94D7F5E1EA0000200AB71B4 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F5D1EA0000200AB71B4 /* SharePhotoController.swift */; };
 		F94D7F611EA0037300AB71B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F601EA0037300AB71B4 /* Extensions.swift */; };
 		F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D7F621EA0041500AB71B4 /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 		F92440171E957EB6001748F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F92440261E958697001748F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Storyboards/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F92440281E958697001748F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Storyboards/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F94D3F191EAF86BA0056974E /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraController.swift; path = Camera/CameraController.swift; sourceTree = "<group>"; };
 		F94D7F5D1EA0000200AB71B4 /* SharePhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SharePhotoController.swift; path = NewPost/SharePhotoController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F94D7F601EA0037300AB71B4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Utils/Extensions.swift; sourceTree = "<group>"; };
 		F94D7F621EA0041500AB71B4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		F924400F1E957EB6001748F6 /* Instagram Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				F94D3F181EAF86980056974E /* Camera */,
 				F9A5FAE41E968109009F9115 /* Login */,
 				F9AEE5561EA1814B00B82304 /* Home */,
 				F9F2719F1EA40E2100155B70 /* Search */,
@@ -147,6 +150,14 @@
 				F92440271E958697001748F6 /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		F94D3F181EAF86980056974E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F94D3F191EAF86BA0056974E /* CameraController.swift */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		F94D7F5F1EA0036000AB71B4 /* Utils */ = {
@@ -345,6 +356,7 @@
 				F94D7F6B1EA0045400AB71B4 /* UserProfileController.swift in Sources */,
 				F9F2719E1EA4011F00155B70 /* PhotoCell.swift in Sources */,
 				F94D7F691EA0041500AB71B4 /* MainTabBarController.swift in Sources */,
+				F94D3F1A1EAF86BA0056974E /* CameraController.swift in Sources */,
 				F94D7F611EA0037300AB71B4 /* Extensions.swift in Sources */,
 				F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */,
 				F9AEE55A1EA1824E00B82304 /* HomePostCell.swift in Sources */,
