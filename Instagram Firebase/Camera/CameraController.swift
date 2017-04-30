@@ -11,6 +11,9 @@ import AVFoundation
 
 class CameraController: UIViewController {
   
+  // MARK: - Variables
+  let output = AVCapturePhotoOutput()
+  
   // MARK: - UI
   let dismissButton: UIButton = {
     let button = UIButton(type: .system)
@@ -28,7 +31,12 @@ class CameraController: UIViewController {
   
   // MARK: - Handlers
   func handleCapture() {
+    let settings = AVCapturePhotoSettings()
+    guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
     
+    settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+    
+    output.capturePhoto(with: settings, delegate: self)
   }
   
   func handleDismiss() {
@@ -58,7 +66,6 @@ class CameraController: UIViewController {
     }
     
     // Output
-    let output = AVCapturePhotoOutput()
     if captureSession.canAddOutput(output) {
       captureSession.addOutput(output)
     }
@@ -78,5 +85,18 @@ class CameraController: UIViewController {
     
     dismissButton.anchor(top: view.topAnchor, trailing: view.trailingAnchor, width: dismissButton.heightAnchor, topConstant: 12, trailingConstant: 12, heightConstant: 50)
     captureButton.anchor(bottom: view.bottomAnchor, centerX: view.centerXAnchor, width: captureButton.heightAnchor, bottomConstant: 24, heightConstant: 80)
+  }
+}
+
+// MARK: - AVCapturePhotoCaptureDelegate
+extension CameraController: AVCapturePhotoCaptureDelegate {
+  func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+    
+    let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
+    let previewImage = UIImage(data: data!)
+    
+    let previewImageView = UIImageView(image: previewImage)
+    view.addSubview(previewImageView)
+    previewImageView.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor)
   }
 }
