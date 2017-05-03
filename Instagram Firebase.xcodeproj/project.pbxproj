@@ -27,6 +27,7 @@
 		F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5541EA1790600B82304 /* CustomImageView.swift */; };
 		F9AEE5581EA1816000B82304 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5571EA1816000B82304 /* HomeController.swift */; };
 		F9AEE55A1EA1824E00B82304 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5591EA1824E00B82304 /* HomePostCell.swift */; };
+		F9E830821EB6334600C95C12 /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E830811EB6334600C95C12 /* PreviewPhotoContainerView.swift */; };
 		F9F2719A1EA3F35500155B70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F271991EA3F35500155B70 /* User.swift */; };
 		F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */; };
 		F9F2719E1EA4011F00155B70 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2719D1EA4011F00155B70 /* PhotoCell.swift */; };
@@ -59,6 +60,7 @@
 		F9AEE5541EA1790600B82304 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CustomImageView.swift; path = Utils/CustomImageView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9AEE5571EA1816000B82304 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HomeController.swift; path = Home/HomeController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9AEE5591EA1824E00B82304 /* HomePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HomePostCell.swift; path = Home/HomePostCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F9E830811EB6334600C95C12 /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewPhotoContainerView.swift; path = Camera/PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		F9F271991EA3F35500155B70 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		F9F2719B1EA3FF1600155B70 /* FirebaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FirebaseUtils.swift; path = Utils/FirebaseUtils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9F2719D1EA4011F00155B70 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCell.swift; path = Utils/PhotoCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				F94D3F191EAF86BA0056974E /* CameraController.swift */,
+				F9E830811EB6334600C95C12 /* PreviewPhotoContainerView.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			files = (
 				F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */,
 				F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */,
+				F9E830821EB6334600C95C12 /* PreviewPhotoContainerView.swift in Sources */,
 				F9F271A11EA40E6600155B70 /* UserSearchController.swift in Sources */,
 				F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */,
 				F901CF591E9EC485007CC40D /* PhotoSelectorController.swift in Sources */,

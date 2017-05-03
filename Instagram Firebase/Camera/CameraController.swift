@@ -29,6 +29,10 @@ class CameraController: UIViewController {
     return button
   }()
   
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+  
   // MARK: - Handlers
   func handleCapture() {
     let settings = AVCapturePhotoSettings()
@@ -95,8 +99,9 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
     let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
     let previewImage = UIImage(data: data!)
     
-    let previewImageView = UIImageView(image: previewImage)
-    view.addSubview(previewImageView)
-    previewImageView.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor)
+    let containerView = PreviewPhotoContainerView()
+    containerView.previewImageView.image = previewImage
+    view.addSubview(containerView)
+    containerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor)
   }
 }
