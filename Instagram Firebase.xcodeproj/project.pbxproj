@@ -24,6 +24,8 @@
 		F9A5FAE11E965D5A009F9115 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */; };
 		F9A5FAE61E968118009F9115 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE51E968118009F9115 /* LoginController.swift */; };
 		F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5FAE71E9684AE009F9115 /* SignUpController.swift */; };
+		F9A779041EBA7F65008D97F5 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A779031EBA7F65008D97F5 /* CustomAnimationPresentor.swift */; };
+		F9A779061EBA85BB008D97F5 /* CustomAnimationDismissor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A779051EBA85BB008D97F5 /* CustomAnimationDismissor.swift */; };
 		F9AEE5551EA1790600B82304 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5541EA1790600B82304 /* CustomImageView.swift */; };
 		F9AEE5581EA1816000B82304 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5571EA1816000B82304 /* HomeController.swift */; };
 		F9AEE55A1EA1824E00B82304 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEE5591EA1824E00B82304 /* HomePostCell.swift */; };
@@ -57,6 +59,8 @@
 		F9A5FAE01E965D5A009F9115 /* UserProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserProfileHeader.swift; path = "User Profile/UserProfileHeader.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9A5FAE51E968118009F9115 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = LoginController.swift; path = Login/LoginController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9A5FAE71E9684AE009F9115 /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SignUpController.swift; path = Login/SignUpController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F9A779031EBA7F65008D97F5 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnimationPresentor.swift; path = Camera/CustomAnimationPresentor.swift; sourceTree = "<group>"; };
+		F9A779051EBA85BB008D97F5 /* CustomAnimationDismissor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnimationDismissor.swift; path = Camera/CustomAnimationDismissor.swift; sourceTree = "<group>"; };
 		F9AEE5541EA1790600B82304 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CustomImageView.swift; path = Utils/CustomImageView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9AEE5571EA1816000B82304 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HomeController.swift; path = Home/HomeController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F9AEE5591EA1824E00B82304 /* HomePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HomePostCell.swift; path = Home/HomePostCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -159,6 +163,8 @@
 			children = (
 				F94D3F191EAF86BA0056974E /* CameraController.swift */,
 				F9E830811EB6334600C95C12 /* PreviewPhotoContainerView.swift */,
+				F9A779031EBA7F65008D97F5 /* CustomAnimationPresentor.swift */,
+				F9A779051EBA85BB008D97F5 /* CustomAnimationDismissor.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -345,8 +351,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A779041EBA7F65008D97F5 /* CustomAnimationPresentor.swift in Sources */,
 				F9F2719C1EA3FF1600155B70 /* FirebaseUtils.swift in Sources */,
 				F94D7F661EA0041500AB71B4 /* AppDelegate.swift in Sources */,
+				F9A779061EBA85BB008D97F5 /* CustomAnimationDismissor.swift in Sources */,
 				F9E830821EB6334600C95C12 /* PreviewPhotoContainerView.swift in Sources */,
 				F9F271A11EA40E6600155B70 /* UserSearchController.swift in Sources */,
 				F9A5FAE81E9684AE009F9115 /* SignUpController.swift in Sources */,

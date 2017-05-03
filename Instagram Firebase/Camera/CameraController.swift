@@ -13,6 +13,8 @@ class CameraController: UIViewController {
   
   // MARK: - Variables
   let output = AVCapturePhotoOutput()
+  let customAnimationPresentor = CustomAnimationPresentor()
+  let customAnimationDismissor = CustomAnimationDismissor()
   
   // MARK: - UI
   let dismissButton: UIButton = {
@@ -50,6 +52,8 @@ class CameraController: UIViewController {
   // MARK: - Functions
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    transitioningDelegate = self
     
     setupCaptureSession()
     setupViews()
@@ -103,5 +107,16 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
     containerView.previewImageView.image = previewImage
     view.addSubview(containerView)
     containerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor)
+  }
+}
+
+// MARK: - UIViewControllerAnimatedTransitioning
+extension CameraController: UIViewControllerTransitioningDelegate {
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return customAnimationPresentor
+  }
+  
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return customAnimationDismissor
   }
 }
