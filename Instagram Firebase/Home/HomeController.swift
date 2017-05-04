@@ -107,6 +107,7 @@ extension HomeController {
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
     cell.post = filteredPosts[indexPath.row]
+    cell.delegate = self
     return cell
   }
 }
@@ -121,5 +122,14 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     height += 60 // caption
     
     return CGSize(width: view.frame.width, height: height)
+  }
+}
+
+// MARK: - HomePostCellDelegate
+extension HomeController: HomePostCellDelegate {
+  func didTappedComment(for post: Post) {
+    let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+    commentsController.post = post
+    navigationController?.pushViewController(commentsController, animated: true)
   }
 }
